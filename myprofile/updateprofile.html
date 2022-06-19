@@ -1,0 +1,114 @@
+
+
+
+
+
+
+<?php
+session_start();
+include '../config/config.php' ;
+$myid=$_SESSION['userid'];
+   
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+  
+  $fullname =$_POST['fullname'];
+  $username =$_POST['username'];
+  $password =$_POST['password'];
+  $email =$_POST['email'];
+  $job =$_POST['job'];
+  $about =$_POST['about'];
+
+
+ $name     =@$_FILES['photo'] ['name'] ;
+  $type     =@$_FILES['photo'] ['type'] ;
+  $tmp      =@$_FILES['photo'] ['tmp_name'] ;
+  $size      =@$_FILES['photo'] ['size'] ;
+   
+ $date=date('dMy');
+ $time=date('H:i:s');
+ 
+$nb="update users set username='$username',password='$password',
+fullname='$fullname',email='$email',job='$job',about='$about' where userid='$myid' ";
+
+$mb= mysqli_query($conn,$nb);
+if($mb){
+
+
+       }
+
+
+
+if(!empty($name)){
+           
+
+
+
+
+
+
+
+ $name     =@$_FILES['photo'] ['name'] ;
+  $type     =@$_FILES['photo'] ['type'] ;
+  $tmp      =@$_FILES['photo'] ['tmp_name'] ;
+  $size      =@$_FILES['photo'] ['size'] ;
+
+
+$allowed =array("jpg","png","gif","jpeg");
+$explode =explode('.',$name);
+$filetype=strtolower(end($explode));
+
+if(! in_array($filetype, $allowed)){
+  echo "  this extention not supported ";
+} else{  
+
+
+$lg="select * from users where userid='$myid' ";
+$kk=mysqli_query($conn,$lg);
+$av=mysqli_fetch_array($kk);
+$oldav=$av['avatar'];
+if($oldav !=='m/male.jpg' && $oldav !=='m/female.jpg'){
+	unlink('../siteimg/'.$oldav);
+}
+
+
+
+
+
+
+
+
+
+    $nename= rand(0,100)."_".$name;
+
+  move_uploaded_file($tmp, '../siteimg/'.$nename);
+  
+  $stb="update users set avatar='$nename' where userid='$myid' ";
+$ttb = mysqli_query($conn,$stb);
+
+}
+
+
+
+
+
+
+}
+
+
+
+}
+
+
+
+?>
+
+
+
+
+
+
+
+
+
+<span style="color:green;"> you have updated successfully </span>

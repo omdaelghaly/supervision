@@ -1,0 +1,226 @@
+
+  <?php
+session_start();
+ 
+
+@$myid=$_SESSION['userid'];
+$m="select * from users where userid='$myid' ";
+@$n=mysqli_query($conn,$m);
+@$my=mysqli_fetch_array($n);
+$myfname = $my['fullname'];
+$avatar= $my['avatar'];
+$level=$my['level'];
+
+
+
+
+
+  ?>
+
+
+ <div class="container-fluid" id="logo" style="background:lightgreen;height:70px;margin:0px ;padding: 0px  ">
+  
+    <center >
+       <h3 style=" "> <span id="logo1"  style="color:white;"> 𝓢𝓾𝓹𝓮𝓻𝓿𝓲𝓼𝓲𝓸𝓷 𝓸𝓯 𝓽𝓱𝓮 𝓔𝓷𝓰𝓵𝓲𝓼𝓱 𝓵𝓪𝓷𝓰𝓾𝓪𝓰𝓮 𝓲𝓷 𝓜𝓮𝓷𝓸𝓾𝓯𝓲𝓪    </span></h3>
+
+    </center>
+    
+ </div>
+<script type="text/javascript"  src="../inc/headcolor.js"></script>
+
+
+<!------------------------------------------------nav------------------------->
+
+
+
+<nav class="navbar navbar-expand-lg  navbar-dark bg-primary" id="navx">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="../home?mcatid=1"> 𝔐.𝔈𝔫𝔤.𝔖𝔲𝔭𝔢𝔯𝔳𝔦𝔰𝔦𝔬𝔫 </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../home?mcatid=1">Home <i class="fas fa-home"></i></a>
+        </li>
+
+        <!--
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        ------->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Cycles <i class="fas fa-books"></i>
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+            <li><a class="dropdown-item" href="../primarystage?mcatid=2&&catid=1&&scatid=1">Primary Stage</a></li>
+            <li><a class="dropdown-item" href="../preparatorystage?mcatid=2&&catid=2&&scatid=1">Preparatory Stage</a></li>
+            <li><a class="dropdown-item" href="../secondarystage?mcatid=2&&catid=3&&scatid=1">Secondary Stage</a></li>
+            <li><a class="dropdown-item" href="../technicaleducation?mcatid=2&&catid=4&&scatid=1">Technical Education</a></li>
+<!-----
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li> 
+   --->                                        
+          </ul>
+        </li>
+       
+
+ 
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../events?mcatid=3">Events <i class="fal fa-school"></i></a>
+        </li>
+
+ 
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../channels?mcatid=8">Channels/TV <i class="fad fa-tv"></i></a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../exams?mcatid=4">Exams <i class="fas fa-book-reader"></i></a>
+        </li>
+
+       <!-------------------------->
+
+
+
+
+       <!-------------------------->
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../games?mcatid=5 ">Games <i class="fas fa-gamepad"></i></a>
+        </li>
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            More
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="../contactus?mcatid=6">Contact us</a></li>
+            <li><a class="dropdown-item" href="../about?mcatid=7">About</a></li>
+           
+          </ul>
+        </li>
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     <i class="fa fa-envelope"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href=""> no message yet </a></li>
+           
+          </ul>
+        </li>
+
+<?php 
+
+$gf="select * from contactus where seen='1' ";
+$sw=mysqli_query($conn,$gf);
+$contactnum=mysqli_num_rows($sw);
+if($level==2){
+  if($contactnum > 0){
+  $cnum=$contactnum;
+  $red='style="color:red"';
+}
+
+}
+
+?>
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-bell" <?php echo @$red;?>></i><span ><?php echo @$cnum;?></span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <?php
+            if($level==2){  ?>
+
+            <li><a class="dropdown-item" href="../contactmsg">new contact message</a></li>
+           <?php } ?>
+          </ul>
+        </li>
+
+
+
+
+
+      </ul>
+
+
+
+
+
+
+ <ul class="navbar-nav   d-flex" >
+
+
+<?php  
+if(@!$_SESSION['user']){
+
+?>
+
+
+
+        <li class="nav-item">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../login">login <i class="fas fa-sign-in-alt"></i></a>
+        </li>
+ <?php }else{?>   
+        <li class="nav-item dropdown" style=" ">
+          <a class="nav-link dropdown-toggle nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"  style="margin:0;padding:0;margin-right:40px ">
+            <?php echo $myfname;?>
+            <img src="../siteimg/<?php echo $avatar;?>"  style="width:50px;height:30px;margin:0;padding:0;border-radius:20px    " >
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="../myprofile/?myid=<?php echo $myid;?>">My profile</a></li>
+            <li><a class="dropdown-item" href="../login/logout.php">logout</a></li>
+           
+          </ul>
+        </li>
+<?php } ?>
+       <!-------------------------->
+      </ul>
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+	#navx a:hover {
+  background:skyblue;
+ border-radius: 20px;
+ color: white
+}
+
+.dropdown-item:hover{
+border-radius:20px;
+background-color:orange; 
+color:white;
+}
+</style>
+

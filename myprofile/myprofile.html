@@ -1,0 +1,296 @@
+
+
+
+<link rel="stylesheet" type="text/css" href="style.css">
+<br>
+
+
+<?php
+
+$h="select * from users where userid = '$myid'  ";
+$j=mysqli_query($conn,$h);
+$my=mysqli_fetch_array($j);
+$fullname=$my['fullname'];
+$username=$my['username'];
+$password=$my['password'];
+$email   =$my['email'];
+$job     =$my['job'];
+$about   =$my['about'];
+$avatar  =$my['avatar'];
+?>
+<body>
+<div class="container">
+    <div class="main-body">
+    
+   
+          <!-- /Breadcrumb -->
+    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img id="proimg" src="../siteimg/<?php echo $avatar;?>" alt="Admin" class="rounded-circle" 
+                    width="180" height="180">
+                    <div class="mt-3">
+                      <h4 id="fullnamep"><?php echo $fullname;?></h4>
+                      <p  id="jobp" class="text-secondary mb-1"><?php echo $job;?></p>
+                      <p id="aboutp" class="text-muted font-size-sm"><?php echo $about;?></p>
+                      <div class="btn btn-primary">𝔐.𝔈𝔫𝔤.𝔖𝔲𝔭𝔢𝔯𝔳𝔦𝔰𝔦𝔬𝔫</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+
+
+
+
+
+<form action="updateprofile.html" method="post" id="formupdateprofile" enctype="multipart/form-data">
+
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <input type="text" id="fullname" name="fullname" value="<?php echo $fullname;?>" class="col-sm-9 text-secondary">
+
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">User name</h6>
+                    </div>
+                    <input type="text" id="username" name="username" value="<?php echo $username;?>" class="col-sm-9 text-secondary">
+                     
+
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Password</h6>
+                    </div>
+                    <input type="text" id="password" name="password" value="<?php echo $password;?>" class="col-sm-9 text-secondary">
+                    
+
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <input type="text" id="email" name="email" value="<?php echo $email;?>" class="col-sm-9 text-secondary">
+                    
+
+                  </div>
+                  <hr>
+            
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Job</h6>
+                    </div>
+                    <input type="text" id="job" name="job" value="<?php echo $job;?>" class="col-sm-9 text-secondary">
+                    
+
+                  </div>
+                  <hr>
+                        <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">About</h6>
+                    </div>
+                    <input type="text" id="about" name="about" value="<?php echo $about;?>" class="col-sm-9 text-secondary">
+                    
+
+                  </div>
+                  <hr>
+                        <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Profile image </h6>
+                    </div>
+          <a href=""  id="upimg" class="col-sm-9 text-secondary"
+          style="color:green"> upload photo profile <i class="fas fa-upload" style="font-size:30px "></i></a>
+                                        <input type="file"  hidden id="file" name="photo" accept="image/*"   >
+<style type="text/css">
+	#upimg{
+		text-decoration: none;
+
+	}
+</style>
+                                     
+
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-sm-12">
+
+                    </div>              
+                                           <center>
+                                          <input type="submit" name="submit" id="save" value="save" class="btn btn-info" width="50%">  
+                                          </center>  
+                                        
+                                              <div id="returnup"></div>
+
+
+                  </div>
+
+                </div>
+              </div>
+
+
+
+</form>
+
+
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+</body>
+
+
+
+                    <script type="text/javascript">
+                      $('#upimg').on('click',function(e){
+                        e.preventDefault();
+                        $('#file').click();
+                          $('#afile').style.clear="hover"
+                      })
+                    </script>
+
+
+<script>
+
+      $( "form" ).each( function () {
+
+        /* each form add onsubmit event */
+        $( this ).bind( "submit", function (event) {
+
+          event.preventDefault(); // return false
+
+
+          var formHTML = event.target; // $( this ) => not work !!
+
+          console.log( formHTML ); // formHTML element
+
+
+          // https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
+          var formData = new FormData( formHTML );
+
+          console.log( formData );
+
+
+          // https://api.jquery.com/jquery.ajax/
+          // https://www.w3schools.com/jquery/ajax_ajax.asp
+          // https://www.w3schools.com/jquery/jquery_ref_ajax.asp
+
+          /* AJAX request */
+          ajax( formHTML, formData, "#returnup" );
+           // ajax( form, data, destination )
+                            $('form').trigger("reset");
+
+        } );
+
+      });
+
+    </script>
+
+    <script>
+
+      function ajax( form, data, destination )
+      {
+
+        $.ajax({
+
+          method: form.method,
+          url: form.action,
+
+          data: data,
+
+          /*
+            result type data
+            JSON.parse(data)
+            http://api.jquery.com/jQuery.ajax/
+            https://stackoverflow.com/questions/14322984/differences-between-contenttype-and-datatype-in-jquery-ajax-function
+            https://forums.asp.net/t/2087039.aspx?what+is+difference+between+dataType+and+contentType+in+jquery
+          */
+          dataType: "HTML",
+
+          /* formData */
+          contentType: false, // formData with $_POST or $_FILES in server (PHP)
+          processData: false
+
+        })
+
+        /* handle success */
+        .done( function(result) {
+
+          $( destination ).html( result );
+
+
+        } )
+
+        /* handle error */
+        .fail( function(error) {
+
+          alert("Cannot Set Data!");
+          $('#returnup').html('faild');
+
+          console.error(error);
+
+        } );
+
+      }
+
+    </script>
+
+
+ <script>
+        $(document).ready(function() {
+            $('#save').click(function() {
+         
+              
+                   
+
+
+  var newimg=$('#file').val();
+  if(newimg !=''){
+$('#proimg').attr('src','newimg');
+                 }
+   var fullname=$('#fullname').val();
+  var username =$('#username').val();
+  var password =$('#password').val();
+  var email   =$('#email').val();
+  var job     =$('#job').val();
+  var about=$('#about').val();
+
+$('#fullnamep').html(fullname);
+$('#jobp').html(job);
+$('#aboutp').html(about);
+$('#fullname').attr('value',fullname);
+$('#username').attr('value',username);
+$('#password').attr('value',password);
+$('#email').attr('value',email);
+$('#job').attr('value',job);
+$('#about').attr('value',about);
+
+
+setTimeout(function(){
+	$('#returnup').html('');
+},3000);
+
+
+
+
+                
+            });
+        });
+
+
+    </script>

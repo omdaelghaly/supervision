@@ -1,0 +1,12 @@
+
+
+<?php
+include'../config/config.php';
+
+	$comid = isset($_GET['comid']) && is_numeric($_GET['comid'])? intval($_GET['comid']) :0 ;
+
+
+$dcom="delete from comments where comid='$comid' ";
+$dd=mysqli_query($conn,$dcom);
+
+?>

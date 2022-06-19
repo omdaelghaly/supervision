@@ -1,0 +1,127 @@
+
+
+<!DOCTYPE html >
+<html>
+<head>
+	<title> contact us</title>
+
+	<?php
+include '../config/config.php';
+include '../inc/init.html'; 
+include '../inc/header.html'; 
+
+?>
+
+</head>
+<body style=" overflow-y:;">
+
+
+
+
+<div class="container_fluid" style=" overflow-x:hidden;">
+ <div class="row">
+
+  
+
+<!---------------------------------------------->
+<div class=" col-xs-12 col-sm-12 col-md-9- col-lg-9 col-xl-9 " 
+   style="background:lightgray;height: 500px" id="exampage" >
+
+<div class="container">
+
+        <center>  <h3>Contact us </h3>  <br>
+                 <span id="contactreturn"></span>
+        </center>
+
+    <form  action="" method="post" class="form-control" 
+    style="background:skyblue;padding:20px;border-radius:30px  " id="contactform">
+        <fieldset> <input placeholder="name" name="name" type="text" tabindex="1"  autofocus class="form-control"> </fieldset>
+        <fieldset> <input placeholder="Email Address" name="email" type="email" tabindex="2" class="form-control"> </fieldset>
+        <fieldset> <input placeholder="Phone Number" name="tel"  type="number" tabindex="3" class="form-control"> </fieldset>
+        <br>
+        <fieldset> <textarea  name="msg" placeholder="Type your message here..." tabindex="5" required class="form-control"
+         id="contactmsg" 
+          style="min-height:150px "></textarea> </fieldset>
+          <br>
+          <center>
+        <fieldset> <button name="submit" id="contactsend" type="button" id="contactus-submit" data-submit="...Sending" 
+          class="btn btn-primary ">Send Now</button> </fieldset>
+        </center>
+    </form>
+</div>
+    </div>
+
+<!---------------------------------------------->
+
+   <div class="d-none d-md-none d-lg-block d-xl-block col-xs-12 col-sm-12 col-md-3- col-lg-3 col-xl-3 " 
+  style="background:lightgray;height:; ">
+   
+<?php 
+
+include '../sidebar/sidebar.html';
+
+ ?>
+
+    </div>   
+
+<!---------------------------------------------->
+
+  </div>
+</div>
+
+
+
+
+
+
+<script>
+        $(document).ready(function() {
+            $('#contactsend').click(function() {
+                  var msg = $('#contactmsg').val();
+                if (msg == ''  )
+                      {
+                 $('#contactreturn').html('<center style="color:red;"> Write your message ,please </center>');
+                                               setTimeout(function() {
+                                $('#contactreturn').fadeOut("slow");
+                            },5000);
+
+                } else {   
+                     $.ajax({
+                        url: "contactmsg.html",
+                        method: "POST",
+                        data: $('#contactform').serialize(),
+                        success: function(data) {
+                            $('form').trigger("reset");
+                            $('#contactreturn').fadeIn().html(data);
+                            setTimeout(function() {
+                                $('#contactreturn').fadeOut("slow");
+                            },5000);
+                        }
+                    });
+              
+                }
+            });
+        });
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+<?php
+
+ include '../inc/footer.html'; 
+
+?>
+

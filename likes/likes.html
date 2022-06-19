@@ -1,0 +1,39 @@
+<?php
+session_start();
+@$myid=$_SESSION['userid'];
+
+include '../config/config.php';
+
+	$postid = isset($_GET['postid']) && is_numeric($_GET['postid'])? intval($_GET['postid']) :0 ;
+    $userid = isset($_GET['userid']) && is_numeric($_GET['userid'])? intval($_GET['userid']) :0 ;
+
+
+ $insertlike="insert into likes (postid,myid,userid ) values ('$postid','$myid','$userid')   ";
+    $ok= mysqli_query($conn,$insertlike);
+    
+   $coun= "select * from likes where postid = '$postid' ";
+   $count=mysqli_query($conn , $coun);
+             $all=mysqli_num_rows($count);
+
+
+
+
+$usern="select * from users where userid = '$myid'  ";
+$dd = mysqli_query($conn , $usern);
+$ff = mysqli_fetch_array($dd);
+$user=$ff['fullname'] ;
+
+$url='showpost.html?postid='.$postid ;
+$content=$user ." has liked your post ";
+
+$inno="insert into noti (userid , url  , content,name , seen,postid,myid )
+      values ('$userid' ,'$url' , '$content','$user','1','$postid','$myid'  )";
+$des= mysqli_query($conn,$inno);
+
+?>
+
+
+
+      <a href="javascript:void(0)" onclick="insertLike('../likes/dislikes.html?postid=<?php echo $postid;?>&userid=<?php echo $userid ;?>'
+	   ,'<?php echo $postid;?>')"
+     class="btn btn-default"><?php echo @$all;?> <i class="fa fa-heart"style="color:red"></i>  liked</a>

@@ -1,0 +1,17 @@
+
+
+<?php
+
+
+ include'../config/config.php';
+
+  $contid = isset($_GET['contid']) && is_numeric($_GET['contid'])? intval($_GET['contid']) :0 ;
+
+$delco="delete from contactus where contactid='$contid'  ";
+$g=mysqli_query($conn,$delco);
+
+
+?>
+
+
+<center><span  style="color:red ">  تم الحذف   </span></center>

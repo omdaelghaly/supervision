@@ -1,0 +1,121 @@
+
+<div class="container" style="direction: rtl;">
+	<br>
+
+	<div class="container" style="background:white ">
+		
+		<center>
+			<span style="color:green ">𝑀.𝐸𝓃𝑔.𝒮𝓊𝓅𝑒𝓇𝓋𝒾𝓈𝒾𝑜𝓃 𝒾𝓃 𝑀𝑒𝓃𝑜𝓊𝒻𝒾𝒶</span>
+		</center>
+	</div>
+	
+
+<br>
+	<div class="container" style="background:white ">
+	            <center>
+	         <span> Site Map</span>
+	              </center>
+	<br>
+
+
+	          <center>
+	          	
+<a id="m" href="../home?mcatid=1">home</a><hr>
+<a id="m" href="../primarystage?mcatid=2&&catid=1&&scatid=1">cycles</a><hr>
+<a id="m" href="../events?mcatid=3">events</a><hr>
+<a id="m" href="../channels?mcatid=8">tv</a><hr>
+<a id="m" href="../exams?mcatid=4">exams</a><hr>
+<a id="m" href="../games?mcatid=5">games</a><hr>
+<a id="m" href="../contactus?mcatid=6">contact us<hr>
+<a id="m" href="../about?mcatid=7">about</a><hr>
+
+
+
+
+
+	          </center>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<br>
+	<div class="container" style="background:white ">
+		
+		<center>
+			<span>𝑀.𝐸𝓃𝑔.𝒮𝓊𝓅𝑒𝓇𝓋𝒾𝓈𝒾𝑜𝓃 𝒾𝓃 𝑀𝑒𝓃𝑜𝓊𝒻𝒾𝒶</span>
+		</center>
+	</div>
+
+
+	<br>
+	<div class="container" style="background:white ">
+		
+		<center>
+			<span> thanks</span>
+
+		</center>
+	</div>
+
+
+
+
+
+
+</div>
+
+
+<!----------
+	<ul>
+		<?php
+         $u="select * from maincat ";
+         $i=mysqli_query($conn,$u);
+         while($o=mysqli_fetch_array($i)){
+          $r='../';
+          $mcatid=$o['mcatid'];
+          $mcat= $o['mcat'] ;
+             ?>
+            <li> <a href="">
+            	<?php echo $mcat;?></a> </li>
+             <?php
+
+         $v="select * from cat where mcatid='$mcatid'   ";
+         $j=mysqli_query($conn,$v);
+         while($m=mysqli_fetch_array($j)){
+           $catid=$m['catid'];
+            $cat =$m['cat'] ;
+             ?>    
+           <li> <a href=""><?php echo $cat;?></a> </li>
+
+           <?php
+          $vv="select * from scat where catid='$catid'   ";
+         $jg=mysqli_query($conn,$vv);
+         while($y=mysqli_fetch_array($jg)){
+           $scatid=$y['scatid'];
+            $scat = $y['scat'] ;
+             ?>    
+           <ol> <a href=""><?php echo $scat;?></a> </ol>
+
+
+
+
+   
+
+   <?php
+     }}}
+
+		?>
+
+	</ul>
+
+	----->

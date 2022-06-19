@@ -1,0 +1,25 @@
+
+
+<?php
+include'../config/config.php';
+@$myid=$_SESSION['userid'];
+
+
+
+
+
+$name=$_POST['name'];
+$email=$_POST['email'];
+$tel=$_POST['tel'];
+$msg=$_POST['msg'];
+$date=date('dMy');
+$time=date('H:i:s');
+
+$cms="insert into contactus (name,email,tel,msg,date,time,userid,seen)
+                     values('$name','$email','$tel','$msg','$date','$time','$myid','1')  ";
+
+$f=mysqli_query($conn,$cms);
+
+?>
+
+<span style="color:green "> you have sent message successfully </span>

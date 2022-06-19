@@ -1,0 +1,30 @@
+
+
+<?php
+include'../config/config.php';
+
+	$postid = isset($_GET['postid']) && is_numeric($_GET['postid'])? intval($_GET['postid']) :0 ;
+
+
+$dpost="delete from posts where postid ='$postid' ";
+$dd=mysqli_query($conn,$dpost);
+
+
+$g="select * from img where postid='$postid'  ";
+$u=mysqli_query($conn,$g);
+while($ff=mysqli_fetch_array($u)){
+	$imgn=$ff['img'];
+	unlink('../img/'.$imgn);
+};
+
+$dpostimg="delete from img where postid ='$postid' ";
+$dd=mysqli_query($conn,$dpostimg);
+
+
+$dpostco="delete from comments where postid ='$postid' ";
+$dd=mysqli_query($conn,$dpostco);
+
+$dpostl="delete from likes where postid ='$postid' ";
+$dd=mysqli_query($conn,$dpostl);
+
+?>

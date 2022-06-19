@@ -1,0 +1,32 @@
+<?php
+session_start();
+@$myid=$_SESSION['userid'];
+
+include '../config/config.php';
+
+	$postid = isset($_GET['postid']) && is_numeric($_GET['postid'])? intval($_GET['postid']) :0 ;
+    $userid = isset($_GET['userid']) && is_numeric($_GET['userid'])? intval($_GET['userid']) :0 ;
+
+     $deletlike="delete from likes where postid = '$postid' and myid='$myid'  ";
+       $okk= mysqli_query($conn,$deletlike);
+
+         $deletnoti="delete from noti where postid = '$postid' and myid='$myid'  ";
+           $okk= mysqli_query($conn,$deletnoti);
+    
+
+
+     
+   $coun= "select * from likes where postid = $postid ";
+   $count=mysqli_query($conn , $coun);
+   $num=mysqli_num_rows($count);
+
+
+
+
+?>
+
+
+
+      <a href="javascript:void(0)" onclick="insertLike('../likes/likes.html?postid=<?php echo $postid;?>&userid=<?php echo $userid ;?>'
+	   ,'<?php echo $postid;?>')"
+     class="btn btn-default"><?php echo $num ;?><i class="fa fa-heart"style="color:gray"></i>  like </a>

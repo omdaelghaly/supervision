@@ -1,0 +1,115 @@
+
+
+<div id="xa"></div>
+<?php
+@session_start();
+@$myid=$_SESSION['userid'];
+
+include'../config/config.php';
+
+  $postid = isset($_GET['postid']) && is_numeric($_GET['postid'])? intval($_GET['postid']) :0 ;
+
+$coin="select * from comments where postid='$postid' order by date desc,time desc ";
+$er=mysqli_query($conn,$coin);
+while($com=mysqli_fetch_array($er)){
+$uerid=$com['userid'];
+$comment =$com['com'];
+$datec=$com['date'];
+$timec =$com['time'];
+$comid=$com['comid'];
+
+//userinfo
+$yu="select * from users where userid='$uerid' ";
+$ty=mysqli_query($conn,$yu);
+$userc=mysqli_fetch_array($ty);
+$usercfn=$userc['fullname'];
+$uavatar=$userc['avatar'];
+
+//myinfooooo
+$y="select * from users where userid='$myid' ";
+$t=mysqli_query($conn,$y);
+$userl=mysqli_fetch_array($t);
+$level=$userl['level'];
+
+if($level == 2){
+    $hidedel="";
+  }else{
+
+if($myid==$uerid){
+  
+  $hidedel="";
+}else{
+    $hidedel="hidden";
+
+}
+}
+?>
+
+<div id="contcom" style="background:white;padding:5px;margin-right:5px;margin-left:5px;border-radius:70px 5px 5px 10px     ">
+<!-------------->
+<div id=cominfo>
+	<img src="../siteimg/<?php echo $uavatar;?>" 
+	style="width:40px;height:40px;border-radius:50px;   "><span style="display:inline-flex; "><strong>
+      <bold>  <?php echo $usercfn;?></bold>
+	 <br><small>
+        <?php echo $datec ." " .$timec;?>
+	</small></strong></span>
+<!-------->
+ 
+        <li class="nav-item dropdown" style="display:inline-flex;float:left; margin-left: 40px;margin-top:5px;"
+         <?php echo $hidedel;?>   >
+    
+          <a class="nav-link dropdown-toggle nav-link active" href="javascript:void(0)"
+           onclick="deletecom('../delete/deletecom.html?comid=<?php echo $comid;?>','<?php echo $postid;?>')"
+            role="button" data-bs-toggle="dropdown" aria-expanded="false"
+           style="" id="delcom" >
+           delete
+          </a>
+          
+        </li>
+
+ </div>	
+<style type="text/css">
+	#delcom:hover{
+		background:white 
+	}
+</style>
+<div id="postcom">
+	<p id="comp" style="margin-right:15px;margin-left:5px">
+        <?php echo $comment;?>
+
+	</p>
+
+</div>
+
+
+ <!---------------->
+</div>
+<?php } ?>
+
+
+
+
+<script>
+
+function deletecom(page,postid) {
+        
+
+       var xmlhttp;
+       if(window.XMLHttpRequest) {
+         xmlhttp = new XMLHttpRequest();
+       } else {  
+         xmlhttp = new ActiveXobject("Microsoft.XMLHTTP");
+       } 
+         
+       xmlhttp.onreadystatechange = function() { 
+         
+         if(this.readyState == 4 & this.status == 200) { 
+           document.getElementById("xa").innerHTML = this.responseText;
+           
+         }
+       } 
+       xmlhttp.open("GET",page,true);
+       xmlhttp.send();
+     } 
+ </script>

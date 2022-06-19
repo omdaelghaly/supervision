@@ -1,0 +1,140 @@
+
+
+ <div class="col-12" style="background:lightgreen;height:70px  ">
+   <h3 style=" "> <span style="color:red;">
+    <center>𝓢𝓾𝓹𝓮𝓻𝓿𝓲𝓼𝓲𝓸𝓷 𝓸𝓯 𝓽𝓱𝓮 𝓔𝓷𝓰𝓵𝓲𝓼𝓱 𝓵𝓪𝓷𝓰𝓾𝓪𝓰𝓮 𝓲𝓷 𝓜𝓮𝓷𝓸𝓾𝓯𝓲𝓪</center>
+    </span></h3>
+ </div>
+
+
+
+<nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../home">Home</a>
+        </li>
+
+        <!--
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        ------->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Cycles
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+            <li><a class="dropdown-item" href="#">Primary stage</a></li>
+            <li><a class="dropdown-item" href="#">preparatory stage</a></li>
+            <li><a class="dropdown-item" href="#">secondary stage</a></li>
+            <li><a class="dropdown-item" href="#">technical education</a></li>
+<!-----
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li> 
+   --->                                        
+          </ul>
+        </li>
+       
+
+ 
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Events</a>
+        </li>
+
+
+
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Exams</a>
+        </li>
+
+       <!-------------------------->
+
+
+
+
+       <!-------------------------->
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Games</a>
+        </li>
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            More
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Contact us</a></li>
+            <li><a class="dropdown-item" href="#">About</a></li>
+           
+          </ul>
+        </li>
+
+
+
+
+      </ul>
+
+
+
+
+
+
+ <ul class="navbar-nav   d-flex" >
+
+
+<?php  
+if(!@$_SESSION['user']){
+
+?>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../login">login</a>
+        </li>
+ <?php }else{?>   
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="../login/logout.php">logout</a></li>
+           
+          </ul>
+        </li>
+<?php } ?>
+       <!-------------------------->
+      </ul>
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+
+<style type="text/css">
+	a:hover {
+  background:orange;
+ border-radius: 20px;
+ color: white
+}
+
+.dropdown-item:hover{
+border-radius:20px;
+background-color:orange; 
+color:white;
+}
+</style>
+

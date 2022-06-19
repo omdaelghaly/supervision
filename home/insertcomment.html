@@ -1,0 +1,24 @@
+
+
+<?php
+include '../config/config.php';
+
+
+$comment= $_POST['comment'];
+$userid= $_POST['userid'];
+$postid= $_POST['postid'];
+$date=date('dMy');
+$time=date('H:i:s');
+
+$inscom="insert into comments (postid,userid,com,date,time) values('$postid','$userid','$comment','$date','$time')   ";
+$ffd=mysqli_query($conn,$inscom);
+
+?>
+
+
+
+
+
+
+
+

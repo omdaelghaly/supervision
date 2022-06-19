@@ -1,0 +1,14 @@
+
+
+
+
+<?php
+	$postid = isset($_GET['postid']) && is_numeric($_GET['postid'])? intval($_GET['postid']) :0 ;
+
+include'../config/config.php';
+
+ $cnz= "select * from comments where postid = '$postid' ";
+   $czt=mysqli_query($conn , $cnz);
+   $nuc=mysqli_num_rows($czt);  
+   echo $nuc
+   ?>
